@@ -22,11 +22,11 @@ def send_text(message):
     r = requests.get('https://eu1.locationiq.com/v1/reverse.php', params)
     if r.status_code == 200:
         data = r.json()
-        message_text = "Ваш адрес:  {0}, {1}, {2}, {3}, ".format(data['address']['country'],
+        message_text = "Ваш адрес:  {0}, {1}, {2}, {3} ".format(data['address']['country'],
                                                                     data['address']['state'], data['address']['city'],
                                                                     data['address']['city_district'])
 
-        if 'house_number' in data['road']:
+        if 'road' in data['address']:
             message_text += ', {0}'.format(data['address']['road'])
 
         if 'house_number' in data['address']:
